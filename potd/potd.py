@@ -29,7 +29,7 @@ r = s.get('https://prairielearn.engr.illinois.edu/pl')
 # data = {'j_username': 'chuchao2',
 # 'j_password': 'aB19661969', '_eventId_proceed': 'Login'}
 
-login_info = login_module(prarielearn, 'chuchao2', 'aB19661969')
+login_info = login_module(prarielearn, 'username', 'password')
 login_info.uiuc_login(s)
 
 table = s.find_element_by_tag_name('table')
