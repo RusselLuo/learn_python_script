@@ -5,14 +5,14 @@ using namespace std;
 
 unsigned long bernstein(string str, int M) {
   unsigned long b_hash = 5381;
-  for (auto i : str) {
-    b_hash *= (33 + (int)i);
+  for (size_t i = 0; i < str.length(); i++) {
+    b_hash = b_hash * 33 + (int)str[i];
   }
   return b_hash % M;
 }
 
 string reverse(string str) {
-  std::reverse(str.begin(), str.end());
+  reverse(str.begin(), str.end());
   return str;
 }
 
