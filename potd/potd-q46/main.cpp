@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <iostream>
+#include <map>
 #include <string>
 #include <vector>
 using namespace std;
@@ -12,19 +13,23 @@ unsigned long bernstein(string str, int M) {
   return b_hash % M;
 }
 
-float hash_goodness(string str, int M)
-{
-//	vector<string> array[M];	// Hint: This comes in handy
-	vector<string>* array = new vector<string>[M};	// Hint: This comes in handy
-int permutation_count = 0;
-float goodness = 0;
-do {
-  if (permutation_count == M) break;
-  // Code for computing the hash and updating the array
-} while (std::next_permutation(str.begin(), str.end()));
-
-// Code for detecting number of collisions
-return goodness;
+float hash_goodness(string str, int M) {
+  //	vector<string> array[M];	// Hint: This comes in handy
+  map<unsigned long, int> hash_map;  // Hint: This comes in handy
+  int permutation_count = 0;
+  float goodness = 0;
+  do {
+    if (permutation_count == M) break;
+    permutation_count++;
+    hash_map[bernstein(str, M)]++;
+  } while (std::next_permutation(str.begin(), str.end()));
+  float collisions = 0;
+  for (auto &i : hash_map) {
+    collisions += i.second - 1;
+  }
+  // Code for detecting number of collisions
+  goodness = collisions / M;
+  return goodness;
 }
 
 int main() {
