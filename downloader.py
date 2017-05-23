@@ -2,6 +2,9 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
+
+site = input('please enter the address: ')
+keyword = input('please enter the keyword to search: ')
 r = requests.get('http://cn163.net/archives/23794/')
 bsObj = BeautifulSoup(r.text, 'lxml')
 name = []
